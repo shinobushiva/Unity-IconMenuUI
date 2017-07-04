@@ -24,6 +24,9 @@ public class IconMenuUI : MonoBehaviour
 	{
         
         foreach (IconMenu im in iconMenus) {
+			if (im.toggle == null)
+				continue;
+			
             im.toggle.isOn = false;
 			im.toggle.onValueChanged.AddListener(
 				(b)=>{ToggleCanvas(im.toggle);}
