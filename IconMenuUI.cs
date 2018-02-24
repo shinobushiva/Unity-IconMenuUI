@@ -8,6 +8,7 @@ public class IconMenuUI : MonoBehaviour
 
 	public GameObject togglePrefab;
 	public RectTransform parentRect;
+    public bool oneByOne = false;
 
 	[System.Serializable]
 	public class IconMenu
@@ -42,7 +43,7 @@ public class IconMenuUI : MonoBehaviour
 
 	public void ToggleCanvas (Toggle t)
 	{ 
-        if (current != null)
+        if (current != null && !oneByOne)
         {
             current.toggle.isOn = false;
             current.canvas.gameObject.SetActive(false);
@@ -61,6 +62,12 @@ public class IconMenuUI : MonoBehaviour
 				im.canvas.gameObject.SetActive(true);
 				im.canvas.enabled = true;
 			}
+
+            if (oneByOne)
+            {
+                im.canvas.gameObject.SetActive(im.toggle.isOn);
+                im.canvas.enabled = im.toggle.isOn;
+            }
 		}
 
 
